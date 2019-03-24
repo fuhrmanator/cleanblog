@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 published: true
 title: Using the GitHub API in Pharo 7
 header-img: img/posts/ForksAndStars.jpg

@@ -21,6 +21,12 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://fuhrmanator.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: thefuhrmanator
 github_username:  fuhrmanator
+# Enter your Disqus shortname (not your username) to enable commenting on posts
+# You can find your shortname on the Settings page of your Disqus account
+disqus: cfuhrman
+
+# Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
+google_analytics: UA-38690233-3
 
 # Build settings
 markdown: kramdown
