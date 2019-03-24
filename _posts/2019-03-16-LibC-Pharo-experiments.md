@@ -5,6 +5,7 @@ layout: post
 title: LibC experiments in Pharo 7
 date: 2019-03-16T00:00:00.000Z
 background: '/img/posts/LibCPharo.jpg'
+header-img: img/posts/LibCPharo.jpg
 ---
 I've done some work in Pharo that required interfacing with external tools (Java, R, etc.) on multiple platforms. I investigated using OSProcess and OSSubProcess, but there is inconsistency within these packages and they're not fully supported on Windows 10. So, for the work I've done I've found `LibC` to be the best choice.
 
