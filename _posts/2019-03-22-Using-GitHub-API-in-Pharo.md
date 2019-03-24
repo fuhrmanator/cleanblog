@@ -1,4 +1,5 @@
 ---
+redirect_from: "/Using-GitHub-API-in-Pharo/"
 layout: post
 comments: true
 published: true
@@ -7,7 +8,6 @@ header-img: img/posts/ForksAndStars.jpg
 subtitle: >-
   In my mining activities with Pharo, I found it useful to query GitHub to
   select projects to mine.
-redirect_from: "/Using-GitHub-API-in-Pharo/"
 ---
 
 ![Forks and Stars on top of a table]({{site.baseurl}}/img/posts/ForksAndStars.jpg){:class="img-responsive"} In my mining activities with Pharo, I found it useful to query GitHub to select projects to mine according to their popularity (e.g., forks and stars).
