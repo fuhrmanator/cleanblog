@@ -1,2 +1,9 @@
 // Import Core Clean Blog SCSS
 @import "../assets/vendor/startbootstrap-clean-blog/scss/clean-blog.scss";
+// Make sure images are not too wide when they're in posts
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 1.5em auto 1.6em;
+}
