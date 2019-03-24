@@ -1,4 +1,5 @@
 ---
+redirect_from: "/LibC-Pharo-experiments/"
 published: true
 layout: post
 title: LibC experiments in Pharo 7

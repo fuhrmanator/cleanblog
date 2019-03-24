@@ -1,4 +1,5 @@
 ---
+redirect_from: "/Pharo-in-WSL/"
 layout: post
 title: Running Pharo in Windows Subsystem for Linux (WSL)
 published: true
