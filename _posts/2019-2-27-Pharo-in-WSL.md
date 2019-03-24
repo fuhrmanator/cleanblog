@@ -3,8 +3,9 @@ redirect_from: "/Pharo-in-WSL/"
 layout: post
 title: Running Pharo in Windows Subsystem for Linux (WSL)
 published: true
+background: '/img/posts/SurfaceRunningUbuntuWSL.jpg'
 ---
-![Surface 4 Running WSL]({{site.baseurl}}/img/posts/SurfaceRunningUbuntuWSL.jpg){:class="img-responsive"} Pharo 7 runs well in Windows 10 (I have a Surface Pro 4), but I wanted to do some testing of a project also under Linux. Initially I had run Ubuntu in a VM VirtualBox, but given Windows Subsystem for Linux (WSL) is now Ubuntu 18 and is much lighter weight on disk space, I wanted to see if it would work with Pharo.
+Pharo 7 runs well in Windows 10 (I have a Surface Pro 4), but I wanted to do some testing of a project also under Linux. Initially I had run Ubuntu in a VM VirtualBox, but given Windows Subsystem for Linux (WSL) is now Ubuntu 18 and is much lighter weight on disk space, I wanted to see if it would work with Pharo.
 
 Since [Pharo.org](http://Pharo.org) doesn't yet have specific instructions for installing on Ubuntu 18, I was unsure how to proceed. So, I went with the KISS principle and did a command-line (ZeroConf) install, which was successful. Here are the steps:
 
