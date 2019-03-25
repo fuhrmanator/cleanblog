@@ -30,7 +30,7 @@ google_analytics: UA-38690233-3
 
 # Build settings
 markdown: kramdown
-theme: jekyll-theme-clean-blog
+theme: jekyll-theme-cayman
 plugins:
   - jekyll-redirect-from
   - jekyll-feed
