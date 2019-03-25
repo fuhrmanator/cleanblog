@@ -68,10 +68,10 @@ It's not bad, but I was hoping to get data about how many issues (total) existed
 
 GraphQL is more complex, but in theory more powerful. You have to do POST requests, and you need an authorization token (which means GitHub tracks what you are doing). Since the responses are still in JSON, NeoJSON can pick them apart for you as before.
 
-So, here's what I did according to the instructions from GitHub [here](https://developer.github.com/v4/guides/forming-calls/):
+So, here's what I did according to the [instructions from GitHub](https://developer.github.com/v4/guides/forming-calls/):
 
 - I first [created a token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) with scope `repo` (and all repo sub-scopes). I described it as a GitHub repo mining token. For obvious reasons, I don't reveal the token here in my examples.
-- Before making the first query call, I [make a call to login with the token](https://developer.github.com/v4/guides/forming-calls/#communicating-with-graphql). 
+- Before making the first query call, I [make a call to login with the token](https://developer.github.com/v4/guides/forming-calls/#communicating-with-graphql){:text-decoration="underline"}.
 - I specify the token on subsequent calls as before.
 
 Here's a Playground script that could be converted easily to a class with methods:
