@@ -53,13 +53,12 @@ C:\Windows\System32\bash.exe -c "cd && DISPLAY=:0 pharolauncher/pharo-launcher"
 
 I found the icon for Pharo Launcher in its own shortcut when it was installed in Windows 10.
 
-### Edit: Fix the keyboard from the command line.
+### Edit: Fix the keyboard if needed
 
-Pharo runs in an X window, which doesn't unfortunately retain the settings for the keyboard from Windows. The solution is to execute on the WSL command line:
+Pharo runs in an X window, which doesn't unfortunately retain the settings for the keyboard from Windows. If you have a keyboard with dead-keys (I was using US International), my WSL defaults to that and it's not possible to type the comment `"` character in Pharo. The solution I found is to execute the following on the WSL command line:
 
 ```
-# Change the keyboard for X
 setxkbmap us -variant euro
 ```
 
-To make the change "permanent", add it to the end of `~/.profile`.
+To make the change "permanent," add it to the end of `~/.profile`.
