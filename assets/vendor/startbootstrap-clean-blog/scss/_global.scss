@@ -24,8 +24,8 @@ h6 {
 }
 
 a {
-  color: $gray-900;
-  text-decoration: underline;
+/*  color: $gray-900;
+  text-decoration: underline; */
   @include transition-all;
   &:focus,
   &:hover {
