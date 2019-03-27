@@ -11,7 +11,7 @@ Pharo 7 runs well in Windows 10 (I have a Surface Pro 4), but I wanted to do som
 Since [Pharo.org](http://Pharo.org) doesn't yet have specific instructions for installing on Ubuntu 18, I was unsure how to proceed. So, I went with the KISS principle and did a command-line (ZeroConf) install, which was successful. Here are the steps:
 
 - Install and activate WSL following [Microsoft's instructions](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
-- Install an X Server for Windows. I used [VcXsrv](https://sourceforge.net/projects/vcxsrv/) mentioned in [these instructions](https://jaipblog.wordpress.com/2018/01/21/running-linux-gui-apps-on-windows-10/). You should `export DISPLAY=localhost:0` (e.g., in your WSL `~/.bashrc`).
+- Install an X Server for Windows. I used [VcXsrv](https://sourceforge.net/projects/vcxsrv/) mentioned in [these instructions for GUI apps in WSL](https://jaipblog.wordpress.com/2018/01/21/running-linux-gui-apps-on-windows-10/). You should `export DISPLAY=localhost:0` (e.g., in your WSL `~/.bashrc`).
 - Install [Mesa](https://wiki.debian.org/Mesa) with the command `sudo apt install mesa-utils`. This is apparently needed because there are missing libraries for the X11 display used by Pharo. I'm not sure if this is the official dependency, but it worked in my case. For reference, if you don't do this step, you'll get the following message that's somewhat misleading IMO:
 
   ```
@@ -52,3 +52,14 @@ C:\Windows\System32\bash.exe -c "cd && DISPLAY=:0 pharolauncher/pharo-launcher"
 ![Properties of a WSL PharoLauncher shortcut](https://i.imgur.com/32tsrkY.png)
 
 I found the icon for Pharo Launcher in its own shortcut when it was installed in Windows 10.
+
+### Edit: Fix the keyboard from the command line.
+
+Pharo runs in an X window, which doesn't unfortunately retain the settings for the keyboard from Windows. The solution is to execute on the WSL command line:
+
+```
+# Change the keyboard for X
+setxkbmap us -variant euro
+```
+
+To make the change "permanent", add it to the end of `~/.profile`.
