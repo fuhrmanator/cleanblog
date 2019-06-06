@@ -140,15 +140,15 @@ On Windows, `LibC runCommand:` opens up a `CMD.exe` window that will acquire the
 
 It can be problematic to run a `LibC runCommand:` that expects something on `stdin`. I didn't experiment much with this, but I think your Pharo image will block until some input is generated.
 
-[Escaping special characters in the Bourne shell](https://unix.stackexchange.com/a/296147/248429) (combined with using [perl regex one-liners](https://www.rexegg.com/regex-perl-one-liners.html)) can be very complex. Passing information to commands via environment variables as explained above helps a lot. For example, since regular expressions can contain special characters that need to be escaped (if defined as strings in perl, or passed as one-line arguments), the following snippet shows how to pass them:
+[Escaping special characters in the Bourne shell](https://unix.stackexchange.com/a/296147/248429) (combined with using [perl regex one-liners](https://www.rexegg.com/regex-perl-one-liners.html)) can be very complex. Passing information to commands via environment variables as explained above helps a lot. For example, since regular expressions can contain special characters that need to be escaped (if defined as strings in perl, or passed as one-line arguments), the following snippet shows how to pass them (it's a regex to validate imperfectly a URL):
 
 ```smalltalk
-OSEnvironment current setEnv: 'myregex' value: ''.
-"save the stream to search to a file to be used in perl"
+OSEnvironment current setEnv: 'myregex' value: '^(?:\w+:)?\/\/([^\s\.]+\.\S{2}|localhost[\:?\d]*)\S*$'.
+"save the text to search to a file to be used in perl"
 '/tmp/textToSearch' asFileReference
 	ensureDelete;
 	writeStreamDo: [ :fileStream | fileStream 
-    nextPutAll: 'Here is the string I want to search on' ].
+    nextPutAll: 'http://example.com/this_is_a_sample_URL/test' ].
 command := 'perl -0777 -n '
 	, '-e ''while(m/$ENV{myregex}/g){print "$&\n";}'' /tmp/textToSearch > /tmp/regexmatches'.
 result := LibC runCommand: command.
