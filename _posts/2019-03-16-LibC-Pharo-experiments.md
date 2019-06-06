@@ -85,7 +85,7 @@ errorFileName asFileReference contents lines.
 
 ### Environment variables in a LibC command
 
-Let's use an example with an environment variable we set using `OSEnvironment` (also compatible with Windows, MacOS and Unix). We can use [a `git` command to extract a revision of a git repo into a temporary directory](https://stackoverflow.com/a/46942812/1168342), called the `GIT_WORK_TREE`. When you pass environement variables, they need to be defined using the local file system's path syntax. If you use `Path` in Pharo, you can achieve a multi-platform solution.
+Let's use an example with an environment variable we set using `OSEnvironment` (also compatible with Windows, MacOS and Unix). We can use [a `git` command to extract a revision of a git repo into a temporary directory](https://stackoverflow.com/a/46942812/1168342), called the `GIT_WORK_TREE`. When you pass environment variables, they need to be defined using the local file system's path syntax. If you use `Path` in Pharo, you can achieve a multi-platform solution.
 
 First I check out the revision to a work-tree as follows:
 
@@ -139,3 +139,18 @@ Using the techniques described here, I've managed to make Pharo 7 work with `per
 On Windows, `LibC runCommand:` opens up a `CMD.exe` window that will acquire the focus and as of the time of this blog's writing, can't be programmatically placed in the background. This can be either good (e.g., it's useful for the user to see that a long command is executing) or bad (it's annoying when a bunch of short `perl` commands pop up in succession). 
 
 It can be problematic to run a `LibC runCommand:` that expects something on `stdin`. I didn't experiment much with this, but I think your Pharo image will block until some input is generated.
+
+[Escaping special characters in the Bourne shell](https://unix.stackexchange.com/a/296147/248429) (combined with using [perl regex one-liners](https://www.rexegg.com/regex-perl-one-liners.html)) can be very complex. Passing information to commands via environment variables as explained above helps a lot. For example, since regular expressions can contain special characters that need to be escaped (if defined as strings in perl, or passed as one-line arguments), the following snippet shows how to pass them:
+
+```smalltalk
+OSEnvironment current setEnv: 'myregex' value: ''.
+"save the stream to search to a file to be used in perl"
+'/tmp/textToSearch' asFileReference
+	ensureDelete;
+	writeStreamDo: [ :fileStream | fileStream 
+    nextPutAll: 'Here is the string I want to search on' ].
+command := 'perl -0777 -n '
+	, '-e ''while(m/$ENV{myregex}/g){print "$&\n";}'' /tmp/textToSearch > /tmp/regexmatches'.
+result := LibC runCommand: command.
+matches := '/tmp/regexmatches' asFileReference contents lines.
+```
