@@ -1,5 +1,12 @@
 ---
-published: false
+layout: post
+comments: true
+published: true
+title: Analyzing Java with Moose 8
+header-img: img/posts/MooseMenus.jpg
+subtitle: >-
+  Moose is a platform in Pharo that can manipulate models of software, to facilitate analyses including software data mining. 
+background: '/img/posts/MooseMenus.jpg'
 ---
 
 ## Analyzing Java with Moose
@@ -27,7 +34,7 @@ To make this post, I used Moose 8 in Pharo 8, both of which were in development 
 ## Clone the Java project you want to analyze
 
 In this step, let's assume there is a GitHub repository of a Java project that we want to analyze, e.g., [the source code from Head First Design Patterns](https://github.com/bethrobson/Head-First-Design-Patterns).
-In this step we need get a local copy of the source code using **git clone**. 
+In this step we need get a local copy of the source code using **git clone**.
 For this post we will clone it in the Pharo image directory.
 
 Open a Moose Playground (<kbd>CTRL</kbd>+<kbd>O</kbd>+<kbd>W</kbd>) in Pharo, and type the following:
@@ -57,8 +64,26 @@ verveineJFileRef := MooseEasyUtility cloneGitHubRepo:
 
 There are two ways to do this. 
 
-1. There is a user interface that can be run with the command `MooseEasyFamixMakerPresenter open` in a Moose Playground. You supply the paths to the source code, the VerveineJ parser script `verveinej.sh` and the destination MSE (FAMIX) file. 
+1. There is a user interface that can be run with the command `MooseEasyFamixMakerPresenter open` in a Moose Playground. You supply the paths to the source code, the VerveineJ parser script `verveinej.sh` and the destination MSE (FAMIX) file. Assuming the relative paths from the examples above, the Java source to parse is at `tmp/MooseEasyRepos/bethrobson__Head-First-Design-Patterns`, the VerveineJ parser is at `tmp/MooseEasyRepos/moosetechnology__VerveineJ/verveinej.sh` and we want the `HFDP.mse` file to be stored in `tmp`:
+   
+   ![Famix Maker Dialog]({{site.baseurl}}/img/posts/FamixMakerDialog.png){:class="img-responsive"}
 2. There is a programmatic interface that can be run from Pharo code:
    ```
-   
+
    ```
+
+## Load model of Java source
+
+```Smalltalk
+
+```
+
+## Visualize a package in PlantUML
+
+
+## Perform a Moose analysis using Pharo
+
+
+## Conclusion
+
+Thanks to the `Moose-Easy` tools shown in the post, Moose should be more accessible. 
