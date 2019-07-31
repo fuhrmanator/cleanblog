@@ -21,7 +21,7 @@ Here's an overview of this post:
 
 Moose operates on *models* of software, namely FAMIX models. To analyze a Java project, you must first create a model of it using a Java-to-Famix parser. In this example, I will use [VerveineJ](https://github.com/moosetechnology/VerveineJ), but it's also possible to use [JDT2Famix](https://github.com/feenkcom/jdt2famix).
 
-PlantUML is used to create class diagrams of the software in Moose (this is optional). For this post, I installed a local version of the PlantUML server, which also requires an installation of GraphViz.
+PlantUML is used to create class diagrams of the software in Moose (this is optional). For this post, I installed a local version of the [PlantUML server](https://github.com/plantuml/plantuml-server), which also requires an installation of GraphViz.
 
 ## Install Moose
 
