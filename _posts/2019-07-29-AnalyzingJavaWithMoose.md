@@ -156,7 +156,15 @@ classesImplementingMoreThanOneInterface := javaModel allModelClasses
 ```
 Clicking **Do it all and go** (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>G</kbd>) to see the list of classes.
 
-Clicking on one of the results, e.g., `BeatModel` (the first in the list), we can verify the results of the test (how many classes and interfaces are its parents) by clicking the **Raw** tab and typing `self directSuperclasses` in the text box at the bottom. Typing <kbd>Ctrl</kbd>+<kbd>G</kbd> will show the list of elements for this message, which is 
+Clicking on one of the results, e.g., `BeatModel` (the first in the list), we can verify the results of the test (how many classes and interfaces are its parents) by clicking the **Raw** tab and typing `self directSuperclasses` in the text box at the bottom. Typing <kbd>Ctrl</kbd>+<kbd>G</kbd> will show the list of elements for this message, which indeed includes two interfaces:
+
+```
+MetaEventListener in javax::sound::midi (Class)
+BeatModelInterface in headfirst::designpatterns::combined::djview (Class)
+Object in java::lang (Class)
+```
+
+> Note the use of `Class` in this output is from the FAMIX meaning, not Java.
 
 ![PlantUMLGizmoMoose Dialog]({{site.baseurl}}/img/posts/MooseQueryMultipleInterfaceClasses.gif){:class="img-responsive"}
 
