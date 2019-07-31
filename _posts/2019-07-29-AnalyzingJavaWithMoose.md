@@ -29,7 +29,8 @@ To make this post, I used Moose 8 in Pharo 8, both of which were in development 
 
 - [Install the Pharo Launcher](http://pharo.org/download).
 - Create a copy of the image of Moose-8 from the Inria CI:
-  **New Image Templates \> Moose Jenkins \> Moose 8 \> Latest successful build: #*nnn* \> Moose.zip PHARO=80 \> Create image**
+  **New Image Templates \> Official distributions \> Moose Suite 8.0 (development version) \> Create image**
+- Launch the image once it has downloaded.
 
 ## Clone the Java project you want to analyze
 
@@ -62,12 +63,12 @@ verveineJFileRef := MooseEasyUtility cloneGitHubRepo:
 
 > Note there is no need to compile VerveineJ, since its clone normally has the binary jar files.
 
-There are two ways to do this:
+There are two ways to create the FAMIX model from the Java source code with VerveineJ:
 
-1. A user interface can be run with the command `MooseEasyFamixMakerPresenter open` in a Moose Playground. You supply the paths to the source code, the VerveineJ parser script `verveinej.sh` and the destination MSE (FAMIX) file. Assuming the relative paths from the examples above, the Java source to parse is at `tmp/MooseEasyRepos/bethrobson__Head-First-Design-Patterns`, the VerveineJ parser is at `tmp/MooseEasyRepos/moosetechnology__VerveineJ/verveinej.sh` and we want the `HFDP.mse` file to be stored in `tmp`:
-   
+1. Start the `FamixMaker` tool in the menu **Moose > Moose Tools > Famix Maker** (or you can execute `MooseEasyFamixMakerPresenter open` in a Moose Playground). You supply the paths to the source code, the VerveineJ parser script `verveinej.sh` and the destination MSE (FAMIX) file. With the relative paths of the examples above, the Java source to parse is at `tmp/MooseEasyRepos/bethrobson__Head-First-Design-Patterns`, the VerveineJ parser is at `tmp/MooseEasyRepos/moosetechnology__VerveineJ/verveinej.sh` and we choose the name `HFDP.mse` to be the MSE file to be stored in `tmp`:
+
    ![Famix Maker Dialog]({{site.baseurl}}/img/posts/FamixMakerDialog.png){:class="img-responsive"}
-2. There is also a programmatic interface that can be run from Pharo code. Using the variables defined above, we can invoke it like this:
+2. Alternatively, use a programmatic interface. Using the variables defined above, invoke it like this:
    ```smalltalk
 wizard := MooseEasyFamixMaker
 		generateMSETo: 'tmp/HFDP.mse' asFileReference
@@ -99,9 +100,12 @@ mseStream
 
 The [PlantUML Pharo Gizmo](https://github.com/fuhrmanator/PlantUMLPharoGizmo) project has a GUI to visualize Moose models. You start the GUI with the following:
 
-```smalltalk
-PUGizmoForMoose open
-```
+- Click **Moose > Moose Projects > Load PlantUML Gizmo** to load the project.
+- Invoke the GUI with the following command in a Moose Playground:
+
+  ```smalltalk
+  PUGizmoForMoose open.
+  ```
 
 The following browser should appear:
 
@@ -140,9 +144,11 @@ You can get a copy of the .png (or .svg) of the diagram by clicking the **Copy C
 ## Perform a Moose analysis using Pharo
 
 Moose combined with Pharo is very powerful mechanism to do analyses on software.
-In this example, let's assume we want to *find all the classes that implement more than one interface*.
+In this example, let's assume we want to *find all the Java classes in the Head First Design Patterns project that implement more than one interface*.
 It helps to understand that in Moose, a Java interface and a Java class are the same FAMIX element.
-So, a Java class's hierarchy can be obtained in several ways. But we will consider the message `directSuperclasses`, which in Moose returns a Java class's direct superclass, as well as any interfaces it directly implements.
+That said, a class element's hierarchy can be obtained in several ways in Moose.
+For now, we will consider the message `directSuperclasses`, which in Moose returns the direct superclass (or superinterfaces) of a Java class (or interface).
+As such, we  can assume a class implements more than two interfaces if `directSuperclasses` returns more than two elements. That is, the one (1) superclass of the Java class, and at least two (2) superinterfaces it also implements.
 
 In a Moose Playground, type the following Pharo statements:
 
@@ -154,9 +160,10 @@ classesImplementingMoreThanOneInterface := javaModel allModelClasses
 	select: [ :each | 
 		each directSuperclasses size > 2 ]
 ```
-Clicking **Do it all and go** (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>G</kbd>) to see the list of classes.
 
-Clicking on one of the results, e.g., `BeatModel` (the first in the list), we can verify the results of the test (how many classes and interfaces are its parents) by clicking the **Raw** tab and typing `self directSuperclasses` in the text box at the bottom. Typing <kbd>Ctrl</kbd>+<kbd>G</kbd> will show the list of elements for this message, which indeed includes two interfaces:
+Click **Do it all and go** (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>G</kbd>) to see the list of classes that implement more than one interface.
+
+Clicking on one of the results in the list, e.g., `BeatModel` (the first one), we can verify the results of the analysis, i.e., that the class implements at least two interfaces, by clicking the **Raw** tab in the window on the right and typing `self directSuperclasses` in the text box at the bottom. Typing <kbd>Ctrl</kbd>+<kbd>G</kbd> (Do it and go) will show the list of elements for this message, which indeed includes two interfaces:
 
 ```
 MetaEventListener in javax::sound::midi (Class)
@@ -164,7 +171,7 @@ BeatModelInterface in headfirst::designpatterns::combined::djview (Class)
 Object in java::lang (Class)
 ```
 
-> Note the use of `Class` in this output is from the FAMIX meaning, not Java.
+> Note the use of `Class` in this output is from the Moose model's meaning, not Java's meaning.
 
 ![PlantUMLGizmoMoose Dialog]({{site.baseurl}}/img/posts/MooseQueryMultipleInterfaceClasses.gif){:class="img-responsive"}
 
@@ -172,4 +179,8 @@ For more analyses, see [The Moose Book](http://themoosebook.org).
 
 ## Conclusion
 
-Thanks to the `Moose-Easy` and `PlantUMLPharoGizmo` tools shown in this post, Moose should be more accessible.
+Thanks to the `Moose-Easy` and `PlantUMLPharoGizmo` tools shown in this post, we have shown a relatively easy way to analyze Java projects with Moose.
+
+## Acknowledgements
+
+I am grateful to Professor Stéphane Ducasse and the entire RMoD team for their generosity during my 2018-2019 sabbatical at INRIA Nord Europe Lille. Thanks to them I learned so much about Pharo, Moose and a positive team culture in open source software engineering.
