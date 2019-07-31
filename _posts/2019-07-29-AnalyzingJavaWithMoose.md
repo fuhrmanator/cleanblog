@@ -21,13 +21,13 @@ Here's an overview of what I will show in this post:
 
 Moose operates on *models* of software, namely FAMIX models. To analyze a Java project, you must first create a model of it using a Java-to-Famix parser. In this example, I will use [VerveineJ](https://github.com/moosetechnology/VerveineJ), but it's also possible to use [JDT2Famix](https://github.com/feenkcom/jdt2famix).
 
-PlantUML is used to create class diagrams of the software in Moose (this is optional). For this post, I installed a local version of the PlantUML server, which also requires an installation of GraphViz. 
+PlantUML is used to create class diagrams of the software in Moose (this is optional). For this post, I installed a local version of the PlantUML server, which also requires an installation of GraphViz.
 
 ## Install Moose
 
 To make this post, I used Moose 8 in Pharo 8, both of which were in development stage at the time of writing this. Here's a simple way to get it running:
 
-- [Install the Pharo Launcher](http://pharo.org/download). 
+- [Install the Pharo Launcher](http://pharo.org/download).
 - Create a copy of the image of Moose-8 from the Inria CI:
   **New Image Templates \> Moose Jenkins \> Moose 8 \> Latest successful build: #*nnn* \> Moose.zip PHARO=80 \> Create image**
 
@@ -164,4 +164,4 @@ For more analyses, see [The Moose Book](http://themoosebook.org).
 
 ## Conclusion
 
-Thanks to the `Moose-Easy` tools shown in the post, Moose should be more accessible. 
+Thanks to the `Moose-Easy` and `PlantUMLPharoGizmo` tools shown in this post, Moose should be more accessible.
