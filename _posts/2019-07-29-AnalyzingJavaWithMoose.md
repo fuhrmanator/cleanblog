@@ -38,14 +38,14 @@ In this step, let's assume there is a GitHub repository of a Java project that w
 In this step we will get a local copy of the source code using **git clone**, so `git` needs to be installed on your machine and visible from the execution path.
 The `MooseEasyUtility` class will clone it in a temporary folder of the Pharo image directory.
 
-Open a Moose Playground (<kbd>CTRL</kbd>+<kbd>O</kbd>+<kbd>W</kbd>) in Pharo, and type the following:
+Open a Moose Playground (<kbd>CTRL</kbd>+<kbd>O</kbd>+<kbd>W</kbd>) in Pharo, and execute the following:
 
 ```smalltalk
-javaProjectFileRef := MooseEasyUtility cloneGitHubRepo: 
+javaProjectFileRef := MooseEasyUtility cloneGitHubRepo:
     'https://github.com/bethrobson/Head-First-Design-Patterns'.
 ```
 
-This will create a clone of the Java repo from GitHub in your Pharo working directory, with a relative path of `tmp/MooseEasyRepos/bethrobson__Head-First-Design-Patterns`. 
+This will create a clone of the Java repo from GitHub in your Pharo working directory, with a relative path of `tmp/MooseEasyRepos/bethrobson__Head-First-Design-Patterns`.
 
 > Note that we are *not* using `Iceberg` to make this clone, but a `git clone` command run in a Bourne shell via [`LibC` in Pharo]({% post_url 2019-03-16-LibC-Pharo-experiments %}).
 
@@ -57,7 +57,7 @@ Once we have a local copy (clone) of the source code, we can make the FAMIX mode
 - Make a clone of the VerveineJ parser (which is itself a Java project on GitHub) with the following command in a Moose Playground:
 
 ```smalltalk
-verveineJFileRef := MooseEasyUtility cloneGitHubRepo: 
+verveineJFileRef := MooseEasyUtility cloneGitHubRepo:
     'https://github.com/moosetechnology/VerveineJ'.
 ```
 
@@ -76,6 +76,8 @@ wizard := MooseEasyFamixMaker
 		with: verveineJFileRef.
 wizard generateMSE.
    ```
+
+Either way, at the end of this step there should be a file `tmp/HFDP.mse` that is the FAMIX model of the Java source code.
 
 ## Load model of Java source
 
@@ -171,7 +173,7 @@ BeatModelInterface in headfirst::designpatterns::combined::djview (Class)
 Object in java::lang (Class)
 ```
 
-> Note the use of `Class` in this output is from the Moose model's meaning, not Java's meaning.
+> Note the use of `Class` in this output is from the Moose's meaning, not Java's meaning.
 
 ![PlantUMLGizmoMoose Dialog]({{site.baseurl}}/img/posts/MooseQueryMultipleInterfaceClasses.gif){:class="img-responsive"}
 
@@ -183,4 +185,4 @@ Thanks to the `Moose-Easy` and `PlantUMLPharoGizmo` tools shown in this post, we
 
 ## Acknowledgements
 
-I am grateful to Professor Stéphane Ducasse and the entire RMoD team for their generosity during my 2018-2019 sabbatical at INRIA Nord Europe Lille. Thanks to them I learned so much about Pharo, Moose and a positive team culture in open source software engineering.
+I am grateful to Professor Stéphane Ducasse and the entire RMoD team for their generosity during my 2018-2019 sabbatical at INRIA Nord Europe Lille, where I learned so much about Pharo, Moose and a productive team culture in open source software engineering.
