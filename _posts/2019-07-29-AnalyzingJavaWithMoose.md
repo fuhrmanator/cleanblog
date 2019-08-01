@@ -61,9 +61,11 @@ verveineJFileRef := MooseEasyUtility cloneGitHubRepo:
     'https://github.com/moosetechnology/VerveineJ'.
 ```
 
-> Note there is no need to compile VerveineJ, since its clone normally has the binary jar files.
+As before, the clone will be in your Pharo working directory, with a relative path of `tmp/MooseEasyRepos/moosetechnology__VerveineJ`.
 
-There are two ways to create the FAMIX model from the Java source code with VerveineJ:
+> Note there is no need to compile VerveineJ, since its repository normally has the binary jar files.
+
+Once you have VerveineJ, there are two ways to create the FAMIX model from the Java source code:
 
 1. Start the `FamixMaker` tool in the menu **Moose > Moose Tools > Famix Maker** (or you can execute `MooseEasyFamixMakerPresenter open` in a Moose Playground). You supply the paths to the source code, the VerveineJ parser script `verveinej.sh` and the destination MSE (FAMIX) file. With the relative paths of the examples above, the Java source to parse is at `tmp/MooseEasyRepos/bethrobson__Head-First-Design-Patterns`, the VerveineJ parser is at `tmp/MooseEasyRepos/moosetechnology__VerveineJ/verveinej.sh` and we choose the name `HFDP.mse` to be the MSE file to be stored in `tmp`:
 
