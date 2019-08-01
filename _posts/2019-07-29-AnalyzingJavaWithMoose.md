@@ -105,7 +105,7 @@ mseStream
 
 The [PlantUML Pharo Gizmo](https://github.com/fuhrmanator/PlantUMLPharoGizmo) project has a GUI to visualize Moose models. You start the GUI with the following:
 
-- Click **Moose > Moose Projects > Load PlantUML Gizmo** to load the project.
+- Click **Moose \> Moose Projects \> Load PlantUML Gizmo** to load the project.
 - Invoke the GUI with the following command in a Moose Playground:
 
   ```smalltalk
