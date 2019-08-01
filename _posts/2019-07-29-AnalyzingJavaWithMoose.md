@@ -93,7 +93,8 @@ mseStream := mseFileRef readStream.
 mseStream
 	ifNotNil: [ 
 		mooseModel := MooseModel importFromMSEStream: mseStream. 
-    mooseModel rootFolder: 'tmp/MooseEasyRepos/bethrobson__Head-First-Design-Patterns'.
+		mooseModel rootFolder:
+      'tmp/MooseEasyRepos/bethrobson__Head-First-Design-Patterns'.
 		mooseModel install. "So it appears in the Panel"
 		mseStream close. ]
 	ifNil: [ self error: 
