@@ -47,18 +47,22 @@ It also works with the [Pharo Launcher](http://pharo.org/download).
 Here are the steps to install Pharo Launcher in WSL from the command line:
 
 1. Download the latest version of the Linux 64 version of Pharo Launcher to your home directory:
+
     ```
     cd
     curl -o pharo-launcher.zip -L https://files.pharo.org/pharo-launcher/linux64
     ```
 
 2. Unzip it (you may need to install the `unzip` tool with `sudo apt install unzip`):
+
     ```
     unzip pharo-launcher.zip
     ```
+
     Normally this will create a `~/pharolauncher` directory.
 
 3. Run Pharo Launcher with the following command:
+
     ```
     pharolauncher/pharo-launcher &
     ```
