@@ -26,16 +26,16 @@ Since [Pharo.org](http://Pharo.org) doesn't yet have specific instructions for i
 - Install Pharo with ZeroConf command line as below:
 
   ```
-  $ mkdir MyPharo
-  $ cd MyPharo/
-  $ curl -L https://get.pharo.org/64/ | bash
+  mkdir MyPharo
+  cd MyPharo/
+  curl -L https://get.pharo.org/64/ | bash
   ```
 
 - Start the X Server on Windows (e.g., XLaunch from the Start menu in Windows 10).
 - Run Pharo and have fun in Ubuntu 18 (WSL)
 
   ```
-  $ ./pharo-ui
+  ./pharo-ui
   ```
   
   ![Pharo 7 Unix running in an XWindow]({{site.baseurl}}/img/posts/Pharo7WSL.png){:class="img-responsive"}
@@ -48,19 +48,19 @@ Here are the steps to install Pharo Launcher in WSL from the command line:
 
 1. Download the latest version of the Linux 64 version of Pharo Launcher to your home directory:
     ```
-    $ cd
-    $ curl -o pharo-launcher.zip -L https://files.pharo.org/pharo-launcher/linux64
+    cd
+    curl -o pharo-launcher.zip -L https://files.pharo.org/pharo-launcher/linux64
     ```
 
 2. Unzip it (you may need to install the `unzip` tool with `sudo apt install unzip`):
     ```
-    $ unzip pharo-launcher.zip
+    unzip pharo-launcher.zip
     ```
     Normally this will create a `~/pharolauncher` directory.
 
 3. Run Pharo Launcher with the following command:
     ```
-    $ pharolauncher/pharo-launcher &
+    pharolauncher/pharo-launcher &
     ```
 
 ### Edit: Shortcut to launch from Windows
