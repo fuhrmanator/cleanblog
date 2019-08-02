@@ -42,17 +42,30 @@ Since [Pharo.org](http://Pharo.org) doesn't yet have specific instructions for i
 
 It also works with the [Pharo Launcher](http://pharo.org/download).
 
+### Edit: Installing Pharo Launcher
+
+Here are the steps to install Pharo Launcher in WSL from the command line:
+
+1. Download the latest version of the Linux 64 version of Pharo Launcher to your home directory:
+    ```
+    $ cd
+    $ curl -o pharo-launcher.zip -L https://files.pharo.org/pharo-launcher/linux64
+    ```
+
+2. Unzip it (you may need to install the `unzip` tool with `sudo apt install unzip`):
+    ```
+    $ unzip pharo-launcher.zip
+    ```
+    Normally this will create a `~/pharolauncher` directory.
+
+3. Run Pharo Launcher with the following command:
+    ```
+    $ pharolauncher/pharo-launcher &
+    ```
+
 ### Edit: Shortcut to launch from Windows
 
-I made a shortcut to run WSL Pharo-Launcher by creating a shortcut on my desktop. Assuming that Pharo Launcher is unzipped in `~/pharolauncher`, the shortcut has the following **Target:** in its Properties:
-
-```
-C:\Windows\System32\bash.exe -c "cd && DISPLAY=:0 pharolauncher/pharo-launcher"
-```
-
-![Properties of a WSL PharoLauncher shortcut](https://i.imgur.com/32tsrkY.png)
-
-I found the icon for Pharo Launcher in its own shortcut when it was installed in Windows 10.
+I removed these instructions from my page, because stopping Pharo Launcher abnormally (when started from a Windows command) sometimes results in stopping of all the images that were launched from the launcher (without any chance to save), which is a rather unpleasant surprise.
 
 ### Edit: Fix the keyboard if needed
 
