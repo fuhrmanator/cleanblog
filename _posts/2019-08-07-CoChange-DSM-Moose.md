@@ -8,7 +8,7 @@ subtitle: >-
   In this post, I will show a DSM-based visualization for co-change with a Java project using Moose and Pharo.
 background: '/img/posts/CoChangeStrawberries.jpg'
 ---
-## Using a DSM to visualize co-change
+## Using a DSM to visualize co-change of Java classes
 
 In a previous post, I explained how to do a [`DSM from a Java project in Moose`]({% post_url 2019-08-06-DSM-in-Moose-from-Java %}). In this post, I will extend the idea to a DSM-based visualization for co-change, again with a Java project using Moose.
 
