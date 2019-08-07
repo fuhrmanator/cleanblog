@@ -35,7 +35,7 @@ The format is _commitID , file1.java , file2.java , ..._ where a commit can have
 
 > Note, this is not really a consistent CSV format, since the number of columns can vary at each line.
 
-We can see that in at commit `9a300b2` the files `src/ClientNoFactoryMain.java` and `src/no_factory/ProductA.java` were committed together, meaning there was a co-change link. We can also see that those two files were also implicated in the same commit `908c96e`.
+We can see that at commit `9a300b2` the files `src/ClientNoFactoryMain.java` and `src/no_factory/ProductA.java` were committed together, meaning there was a co-change link. We can also see that those two files were also implicated in the same commit `908c96e`.
 
 Commit `544262f` only had a single file committed, so there is no co-change there.
 
@@ -45,7 +45,7 @@ For this visualization, in the GitMiner project there's a Pharo class called `GM
 
 > My design here is surely not optimal; there is likely a better way to make this work, but I was interested in getting results for my research. Constructive comments are welcome at the bottom of this post.
 
-For the following code to work, you first have to load the [GitMiner project in Pharo 7], following the instructions on the repo's page. Once it's loaded, you can open a Moose Playground and paste the following code:
+For the following code to work, you first have to load the [GitMiner project in Pharo 7](https://github.com/fuhrmanator/GitMiner), following the instructions on the repo's page. Once it's loaded, you can open a Moose Playground and paste the following code that uses the sample co-change data and FAMIX model for the FactoryVariants project in Java:
 
 ```smalltalk
 | mooseModel mseFileRef commitTransactions transactionsFileRef 
