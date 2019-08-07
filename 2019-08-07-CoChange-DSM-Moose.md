@@ -1,5 +1,11 @@
 ## Using DSMs to visualize co-change
 
+In a previous post, I explained how to do a [`DSM from a Java project in Moose`]({% post_url 2019-08-06-DSM-in-Moose-from-Java %}). In this post, I will extend the idea to a DSM-based visualization for co-change, again with a Java project using Moose.
+
+### Background
+
+
+
 ## Sample co-change data mined from git
 
 The following comma-separated file was generated from a git repo using the GitMiner project, but we leave the details to that for another day. For now, let's look at the file:
