@@ -38,7 +38,7 @@ Since [Pharo.org](http://Pharo.org) doesn't yet have specific instructions for i
   ./pharo-ui
   ```
   
-  ![Pharo 7 Unix running in an XWindow]({{site.baseurl}}/img/posts/Pharo7WSL.png){:class="img-responsive"}
+  [![Pharo 7 Unix running in an XWindow]({{site.baseurl}}/img/posts/Pharo7WSL.png){:class="img-responsive"}]({{site.baseurl}}/img/posts/Pharo7WSL.png)
 
 It also works with the [Pharo Launcher](http://pharo.org/download).
 

@@ -80,7 +80,7 @@ dsm rotation: 270.
 
 Here's the visualization in action, when you *Do it all and go*:
 
-![Roassal CoChangeDSM visualization]({{site.baseurl}}/img/posts/RTCochangeDSM.gif){:class="img-responsive"}
+[![Roassal CoChangeDSM visualization]({{site.baseurl}}/img/posts/RTCochangeDSM.gif){:class="img-responsive"}]({{site.baseurl}}/img/posts/RTCochangeDSM.gif)
 
 The `GMCochangeMatrix` has the following properties with respect to the cells on its diagonal [1]:
 

@@ -41,7 +41,7 @@ dsm rotation: 270.
 ^dsm
 ```
 
-![Roassal DSM visualization]({{site.baseurl}}/img/posts/RTDSM.gif){:class="img-responsive"}
+[![Roassal DSM visualization]({{site.baseurl}}/img/posts/RTDSM.gif){:class="img-responsive"}]({{site.baseurl}}/img/posts/RTDSM.gif)
 
 This visualization may not be as powerful as [IDEA's DSM analysis or Lattix's](https://blog.jetbrains.com/idea/2008/01/intellij-idea-dependency-analysis-with-dsm/), but it's open source and can be manipulated in Pharo.
 
