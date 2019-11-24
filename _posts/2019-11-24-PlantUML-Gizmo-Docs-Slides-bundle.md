@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-published: false
+published: true
 title: PlantUML Gizmo bundled for Google Docs and Slides
 header-img: img/posts/PlantUMLGizmoSlidesScreenShot1280x800.png
 subtitle: >-
