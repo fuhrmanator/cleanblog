@@ -71,6 +71,16 @@ Here are the steps to install Pharo Launcher in WSL from the command line:
 
 I removed these instructions from my page, because stopping Pharo Launcher abnormally (when started from a Windows command) sometimes results in stopping of all the images that were launched from the launcher (without any chance to save), which is a rather unpleasant surprise.
 
+### Edit: Make the cursor bigger on hi-resolution screens
+
+I use WSL on a Surface Pro, which has a very high resolution screen.
+This results in a very, very tiny cursor.
+If you set the `SQUEAK_FAKEBIGCURSOR` environment variable before launching Pharo, the cursor is definitely bigger:
+
+```
+export SQUEAK_FAKEBIGCURSOR=1
+```
+
 ### Edit: Fix the keyboard if needed
 
 Pharo runs in an X window, which doesn't unfortunately retain the settings for the keyboard from Windows. If you have a keyboard with dead-keys (I was using US International), my WSL defaults to that and it's not possible to type the comment `"` character in Pharo. The solution I found is to execute the following on the WSL command line:
