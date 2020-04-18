@@ -11,7 +11,7 @@ Pharo 7 runs well in Windows 10 (I have a Surface Pro 4), but I wanted to do som
 Since [Pharo.org](http://Pharo.org) doesn't yet have specific instructions for installing on Ubuntu 18, I was unsure how to proceed. So, I went with the KISS principle and did a command-line (ZeroConf) install, which was successful. Here are the steps:
 
 - Install and activate WSL following [Microsoft's instructions](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
-- Install an X Server for Windows. I used [VcXsrv](https://sourceforge.net/projects/vcxsrv/): 
+- Install an X Server for Windows. I used [VcXsrv](https://sourceforge.net/projects/vcxsrv/) installed with [Chocolatey](https://chocolatey.org/packages/vcxsrv) (to make updating easy) and set it up like this:
   - Run **XLaunch** from the start menu, which invokes a wizard. 
   - Accept all the defaults on the wizard.
   - At the last page of the wizard, click **Save configuration** specifying `%appdata%\Microsoft\Windows\Start Menu\Programs\Startup` to have VcXsrv start automatically when you start Windows.
