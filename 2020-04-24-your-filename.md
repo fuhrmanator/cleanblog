@@ -1,5 +1,0 @@
-## Making questions quickly in Moodle with GIFT
-
-I've been using Moodle for years in my courses, and it remains one of the best tools for online learning thanks to its flexible and powerful quiz/testing capabilities. However, Moodle has suffered for a long time with [useability issues](tbd.example.com), which don't get much love because of limited open-source resources and the needs for internationalization, support for many versions of browsers and older Moodle sites. That subject is one for a different blog...
-
-This blog entry focuses on solutions that don't require creating questions in the GUI of Moodle, thanks to the GIFT format. It's a text-based format, that is similar to Markdown, PlantUML, etc. They're all basically computer languages that allow us to create content specific to one domain. In this case, they're quiz questions. You can read [more about the Moode GIFT format](https://docs.moodle.org/en/GIFT_format).
