@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-published: false
+published: true
 title: Creating questions quickly in Moodle with GIFT
 header-img: img/posts/questions.jpg
 background: '/img/posts/questions.jpg'
