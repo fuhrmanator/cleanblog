@@ -6,9 +6,6 @@ title: Creating questions quickly in Moodle with GIFT
 header-img: img/posts/questions.jpg
 background: '/img/posts/questions.jpg'
 ---
-
-## Creating questions quickly in Moodle with GIFT
-
 I've been using Moodle for several years in my courses, and it remains one of the best tools for online learning thanks to its flexible and powerful testing (quiz) capabilities. 
 However, creating a quiz or question in Moodle requires so many clicks!
 
