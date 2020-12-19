@@ -1,0 +1,17 @@
+@startuml Meme
+scale 0.2
+skinparam BackgroundColor Green
+skinparam style strictuml
+skinparam DefaultTextAlignment center
+skinparam DefaultFontName Arial
+'skinparam NoteTextAlignment center
+skinparam class {
+    BackgroundColor transparent
+    BorderColor transparent
+    FontColor White
+    fontStyle bold
+    fontsize 200
+    textalignment center
+}
+class "<img:http://clipart-library.com/images_k/keep-calm-crown-transparent-background/keep-calm-crown-transparent-background-25.png{scale=0.5}>\nKEEP\nCALM\n<size:80>AND\nCLICK LESS TO\n<size:280>CREATE MORE" as A
+@enduml
