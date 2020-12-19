@@ -36,8 +36,8 @@ As with all markdown languages, there are drawbacks to GIFT (at least with how a
 To overcome these drawbacks (and to experiment with DSL tools in my software design courses), in 2016 I started working on a [parsing expression grammar for GIFT](https://github.com/fuhrmanator/GIFT-grammar-PEG.js), with the hope that it could be used for editors in the future. 
 There are at least two tools based on this: 
 
-1. a [web-based GIFT editor](https://fuhrmanator.github.io/GIFT-grammar-PEG.js/editor/editor.html) is the proof of concept I made for the GIFT PEG, 
-2. a more recent and powerful [extension for VSCode to support GIFT](https://marketplace.visualstudio.com/items?itemName=ethan-ou.vscode-gift-pack&ssr=false#overview) created by Ethan Ou.
+1. a recent and powerful [extension for VSCode to support GIFT](https://marketplace.visualstudio.com/items?itemName=ethan-ou.vscode-gift-pack&ssr=false#overview) created by Ethan Ou,
+2. a [web-based GIFT editor](https://fuhrmanator.github.io/GIFT-grammar-PEG.js/editor/editor.html) is the proof of concept I made for the GIFT PEG.
 
 ### Editors for GIFT format
 
@@ -45,15 +45,20 @@ Let's look at how the editors work below.
 
 #### VSCode extension for GIFT
 
-VSCode has an [extension that supports GIFT format](https://marketplace.visualstudio.com/items?itemName=ethan-ou.vscode-gift-pack&ssr=false#overview). It has snippets and syntax highlighting to facilitate creating and editing GIFT questions. 
+VSCode has an [extension that supports GIFT format](https://marketplace.visualstudio.com/items?itemName=ethan-ou.vscode-gift-pack&ssr=false#overview). 
+It has snippets (e.g., `mc` for inserting multiple-choice questions) and syntax highlighting to facilitate creating and editing GIFT questions. 
 It has a preview of what your questions will look like when you import them into Moodle. 
 I've used this extension to make lots of questions and it works very well.
+
+[![GIFT in VSCode]({{site.baseurl}}/img/posts/GIFT_VSCode.gif){:class="img-responsive"}]({{site.baseurl}}/img/posts/GIFT_VSCode.gif)
 
 #### Browser-based GIFT editor
 
 If you don't want to install VSCode, there's also a [light version of an editor](https://fuhrmanator.github.io/GIFT-grammar-PEG.js/docs/editor/editor.html) based on the grammar that runs in a modern web browser. 
 There's no function to save your work, but you copy the contents of the editor and save them to your own text file. 
 It has a drop-down menu of sample questions, and it gives some hints if you have syntax errors. Finally you can preview what your questions look like, and even print the page (to PDF) for a hard-copy of a quiz.
+
+[![GIFT Editor web page]({{site.baseurl}}/img/posts/GIFT_Web.gif){:class="img-responsive"}]({{site.baseurl}}/img/posts/GIFT_Web.gif)
 
 ### Alternative scoring when there is more than one right answer
 
