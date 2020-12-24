@@ -13,6 +13,8 @@ background: '/img/posts/MooseMenus.jpg'
 
 Moose is a platform in Pharo that can manipulate models of software, to facilitate analyses including software data mining. In this blog post, I will show you a few features of Moose to analyze a Java project.
 
+> Note: Although Pharo is supported and is stable in Windows 10, there are some gotchas especially with long directory paths and spaces in file names that can crop up in this tutorial. It's possible to use [Pharo in WSL]({% post_url 2019/02/27/Pharo-in-WSL.html %}) and avoid these pitfalls. If you're going to do a lot of work with Pharo in Windows, I highly recommend checking out WSL!
+
 ## Analysis overview
 
 Here's an overview of this post:
@@ -29,7 +31,8 @@ To make this post, I used Moose 8 in Pharo 8, both of which were in development 
 
 - [Install the Pharo Launcher](http://pharo.org/download).
 - Create a copy of the image of Moose-8 from the Inria CI:
-  **New Image Templates \> Official distributions \> Moose Suite 8.0 (development version) \> Create image**
+  **New Image Templates \> Official distributions \> Moose Suite 8.0 (development version) \> Create image**  
+  > Note: Windows 10 users will want to remove the spaces from the name of the image, or it will cause problems in the scripts in this tutorial. You can name the image **Moose8JavaTutorial** for example.
 - Launch the image once it has downloaded.
 
 ## Clone the Java project you want to analyze
@@ -81,14 +84,14 @@ Click **Generate MSE File** when all the fields are correct. As before, in Windo
    ```smalltalk
 wizard := MooseEasyFamixMaker
 		generateMSETo: 'tmp/HFDP.mse' asFileReference
-		parsing: javaProjectFileRef
-		with: verveineJFileRef.
+		parsing: javaProjectFileRef "'tmp/MooseEasyRepos/bethrobson__Head-First-Design-Patterns' asFileReference"
+		with: verveineJFileRef "tmp/MooseEasyRepos/moosetechnology__VerveineJ/verveinej.sh asFileReference".
 wizard generateMSE.
    ```
 
 Either way, at the end of this step there should be a file `tmp/HFDP.mse` that is the FAMIX model of the Java source code.
 
-## Load model of Java source into Moose
+## Load model of Java source (into Moose)
 
 If you use the GUI, the following code is generated in the text box at the bottom of the dialog. Otherwise, you can copy it from here, changing the paths for the Java source and MSE files:
 
@@ -108,7 +111,7 @@ mseStream
     'Could not load MSE file into Moose: ' , mseFileRef asString ].
 ```
 
-## Visualize a package in PlantUML
+## Visualize a Java package in PlantUML
 
 The [PlantUML Pharo Gizmo](https://github.com/fuhrmanator/PlantUMLPharoGizmo) project has a GUI to visualize Moose models. You start the GUI with the following:
 
