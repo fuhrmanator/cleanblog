@@ -74,20 +74,18 @@ As before, the clone will be in your Pharo working directory, with a relative pa
 
 Once you have VerveineJ, there are two ways to create the FAMIX model from the Java source code:
 
-1. Start the `FamixMaker` tool in the menu **Moose > Moose Tools > Famix Maker** (or you can execute `MooseEasyFamixMakerPresenter open` in a Moose Playground). You supply the paths to the source code, the VerveineJ parser script `verveinej.sh` and the destination MSE (FAMIX) file. With the relative paths of the examples above, the Java source to parse is at `tmp/MooseEasyRepos/bethrobson__Head-First-Design-Patterns`, the VerveineJ parser is at `tmp/MooseEasyRepos/moosetechnology__VerveineJ/verveinej.sh` and we choose the name `HFDP.mse` to be the MSE file to be stored in `tmp`:
-
-   [![Famix Maker Dialog]({{site.baseurl}}/img/posts/FamixMakerDialog.png){:class="img-responsive"}]({{site.baseurl}}/img/posts/FamixMakerDialog.png)
-
+1. Start the `FamixMaker` tool in the menu **Moose > Moose Tools > Famix Maker** (or you can execute `MooseEasyFamixMakerPresenter open` in a Moose Playground). You supply the paths to the source code, the VerveineJ parser script `verveinej.sh` and the destination MSE (FAMIX) file. With the relative paths of the examples above, the Java source to parse is at `tmp/MooseEasyRepos/bethrobson__Head-First-Design-Patterns`, the VerveineJ parser is at `tmp/MooseEasyRepos/moosetechnology__VerveineJ/verveinej.sh` and we choose the name `HFDP.mse` to be the MSE file to be stored in `tmp`:  
+   [![Famix Maker Dialog]({{site.baseurl}}/img/posts/FamixMakerDialog.png){:class="img-responsive"}]({{site.baseurl}}/img/posts/FamixMakerDialog.png)  
 Click **Generate MSE File** when all the fields are correct. As before, in Windows you will see the `cmd.exe` window and even the execution of a shell script.
 
-1. Alternatively, use a programmatic interface. In the same Moose Playground where we cloned the source and VerveineJ parser above, invoke it like this:
-   ```smalltalk
+2. Alternatively, use a programmatic interface. In the same Moose Playground where we cloned the source and VerveineJ parser above, invoke it like this:  
+```smalltalk
 wizard := MooseEasyFamixMaker
 		generateMSETo: 'tmp/HFDP.mse' asFileReference
 		parsing: javaProjectFileRef "'tmp/MooseEasyRepos/bethrobson__Head-First-Design-Patterns' asFileReference"
-		with: verveineJFileRef "tmp/MooseEasyRepos/moosetechnology__VerveineJ/verveinej.sh asFileReference".
+		with: verveineJFileRef "'tmp/MooseEasyRepos/moosetechnology__VerveineJ/verveinej.sh' asFileReference".
 wizard generateMSE.
-   ```
+```
 
 Either way, at the end of this step there should be a file `tmp/HFDP.mse` that is the FAMIX model of the Java source code.
 
