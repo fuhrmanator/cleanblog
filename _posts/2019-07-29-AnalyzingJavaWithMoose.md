@@ -13,7 +13,7 @@ background: '/img/posts/MooseMenus.jpg'
 
 Moose is a platform in Pharo that can manipulate models of software, to facilitate analyses including software data mining. In this blog post, I will show you a few features of Moose to analyze a Java project.
 
-> Note: Although Pharo is supported and is stable in Windows 10, there are some gotchas especially with long directory paths and spaces in file names that can crop up in this tutorial. It's possible to use [Pharo in WSL]({% post_url 2019/02/27/Pharo-in-WSL %}) and avoid these pitfalls. If you're going to do a lot of work with Pharo in Windows, I highly recommend checking out WSL!
+> Note: Although Pharo is supported and is stable in Windows 10, there are some gotchas especially with long directory paths and spaces in file names that can crop up in this tutorial. It's possible to use [Pharo in WSL]({% post_url 2019-2-27-Pharo-in-WSL %}) and avoid these pitfalls. If you're going to do a lot of work with Pharo in Windows, I highly recommend checking out WSL!
 
 ## Analysis overview
 
