@@ -47,7 +47,9 @@ javaProjectFileRef := MooseEasyUtility cloneGitHubRepo:
 
 This will create a clone of the Java repo from GitHub in your Pharo working directory, with a relative path of `tmp/MooseEasyRepos/bethrobson__Head-First-Design-Patterns`.
 
-> Note that we are *not* using `Iceberg` to make this clone, but a `git clone` command run in a Bourne shell via [`LibC` in Pharo]({% post_url 2019-03-16-LibC-Pharo-experiments %}).
+> Note that we are *not* using `Iceberg` to make this clone, but a `git clone` command run in a Bourne shell via [`LibC` in Pharo]({% post_url 2019-03-16-LibC-Pharo-experiments %}). We chose not to use Iceberg because the command runs faster, and there is no memory allocated in the Pharo image for the repository. 
+
+> In Pharo under Windows, you will see a `cmd.exe` window pop-up during the execution of the command. This is a known "gotcha" also discussed in the `LibC` post. 
 
 ## Parse Java to make FAMIX model
 
@@ -60,6 +62,8 @@ Once we have a local copy (clone) of the source code, we can make the FAMIX mode
 verveineJFileRef := MooseEasyUtility cloneGitHubRepo:
     'https://github.com/moosetechnology/VerveineJ'.
 ```
+
+> This will take some time, because of the parser is bigger. In Windows, you'll see the `cmd.exe` window stay up until the command is completed - it's normal. 
 
 As before, the clone will be in your Pharo working directory, with a relative path of `tmp/MooseEasyRepos/moosetechnology__VerveineJ`.
 
