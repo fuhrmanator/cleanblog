@@ -37,6 +37,8 @@ To make this post, I used Moose 8 in Pharo 8, both of which were in development 
 
 ## Clone the Java project you want to analyze
 
+![Clone the Java project](https://www.plantuml.com/plantuml/svg/JT31QiCm30RWkvz2i4ExLqWlBME3bGOAOsMN7JH7ITt8Kf2TGlVqizCUTlojJpz6svJHyXpPfJ78X8OHVj2FW-aidLTMWsmegOn8ibkuU-8mdFDWHDAyi0h17gy8a-c5VDwuPeb9P_C4NZlwTglcY9OUC2j470dUTktx5yG26DOdiYi5eVtpfkZsunNwmClcGR5xAEtXN_S2LKjjMwV5zcfZUJo5D2E7NxglkTNwo2ZviptKyee01mnIlqLMSWGKv5iAgTepcbP8qjqBKzR9RKiib_e3)
+
 In this step, let's assume there is a GitHub repository of a Java project that we want to analyze, e.g., [the source code from Head First Design Patterns](https://github.com/bethrobson/Head-First-Design-Patterns).
 In this step we will get a local copy of the source code using **git clone**, so `git` needs to be installed on your machine and visible from the execution path.
 The `MooseEasyUtility` class will clone it in a temporary folder of the Pharo image directory.
@@ -56,11 +58,12 @@ This will create a clone of the Java repo from GitHub in your Pharo working dire
 
 ## Parse Java to make FAMIX model
 
+![Parse Java to make FAMIX model](https://www.plantuml.com/plantuml/svg/VP31JiCm38RlUGfB73fUeRiC8P2O5gaIOkB2mRHkbpMnAoUT14-FMthWnF7F_-cpdKCkg6LE4HhKJ7346q8HI3WIF3_ubtT8qb5qUGmyeMA2Jsp7GMNchfKe2aMHirN4nLMhpbNrOnJUR9FAbTgoT_KQiypQ4hHc_N1tCGoNCYWHr_yl0BipwOq2q_7ULFxr2VeGJL7L9y5kWwI7FqFsLdeHi_gbDRON7Utn7FACCNpJTborQo9oUVCdSwyGu8213Mr8BIT0nlYLGrxO2wei877tAyn59dUmQ1_v0m00 "Parse Java to make FAMIX model")
+
 Once we have a local copy (clone) of the source code, we can make the FAMIX model of it using a parser such as [VerveineJ](https://github.com/moosetechnology/VerveineJ), which is supported by Moose-Easy. To install VerveineJ for our purposes, it's simple:
 
 - Make sure a Java Runtime Environment (`java` command) is in the execution path of your system.
-- Make a clone of the VerveineJ parser (which is itself a Java project on GitHub) with the following command in a Moose Playground:
-
+- Make a clone of the VerveineJ parser (which is itself a Java project on GitHub) with the following command in a Moose Playground:  
 ```smalltalk
 verveineJFileRef := MooseEasyUtility cloneGitHubRepo:
     'https://github.com/moosetechnology/VerveineJ'.
@@ -75,22 +78,23 @@ As before, the clone will be in your Pharo working directory, with a relative pa
 Once you have VerveineJ, there are two ways to create the FAMIX model from the Java source code:
 
 1. Start the `FamixMaker` tool in the menu **Moose > Moose Tools > Famix Maker** (or you can execute `MooseEasyFamixMakerPresenter open` in a Moose Playground). You supply the paths to the source code, the VerveineJ parser script `verveinej.sh` and the destination MSE (FAMIX) file. With the relative paths of the examples above, the Java source to parse is at `tmp/MooseEasyRepos/bethrobson__Head-First-Design-Patterns`, the VerveineJ parser is at `tmp/MooseEasyRepos/moosetechnology__VerveineJ/verveinej.sh` and we choose the name `HFDP.mse` to be the MSE file to be stored in `tmp`:  
-   [![Famix Maker Dialog]({{site.baseurl}}/img/posts/FamixMakerDialog.png){:class="img-responsive"}]({{site.baseurl}}/img/posts/FamixMakerDialog.png)  
-
+[![Famix Maker Dialog]({{site.baseurl}}/img/posts/FamixMakerDialog.png){:class="img-responsive"}]({{site.baseurl}}/img/posts/FamixMakerDialog.png)  
 Click **Generate MSE File** when all the fields are correct. As before, in Windows you will see the `cmd.exe` window and even the execution of a shell script.
 
 2. Alternatively, use a programmatic interface. In the same Moose Playground where we cloned the source and VerveineJ parser above, invoke it like this:  
-  ```smalltalk
+```smalltalk
 wizard := MooseEasyFamixMaker
 		generateMSETo: 'tmp/HFDP.mse' asFileReference
 		parsing: javaProjectFileRef "'tmp/MooseEasyRepos/bethrobson__Head-First-Design-Patterns' asFileReference"
 		with: verveineJFileRef "'tmp/MooseEasyRepos/moosetechnology__VerveineJ/verveinej.sh' asFileReference".
 wizard generateMSE.
-  ```
+```
 
 Either way, at the end of this step there should be a file `tmp/HFDP.mse` that is the FAMIX model of the Java source code.
 
 ## Load model of Java source (into Moose)
+
+![Load model of Java source](https://www.plantuml.com/plantuml/svg/TP31JiD034Jl-nMMEAJyGdefGY1HDL8bHCM5WzauwP9TE_9kAi7NusrwuCBHzioRaNUve9ObHJW8zf2afmWom1ul25aMzUJo57X6nGIVwATHPU7UInI5eiZPJiJ5DLUIQzh7A4mhO5Rv8b-sjlq316yf7xOxekQRiWWad0YU7xgNzrkDpOdqGe5fVxzrRVVw14E8PhoBOJoNKOcu_RTrTOWOlgj7Inj49yiyXRnW33-qkbopEKRayjOTBEGg0XmnSAr7QdC2P8pVEUIgFQDA5HBtAp0NcTtEHllXBm00 "Load model of Java source")
 
 If you use the GUI, the following code is generated in the text box at the bottom of the dialog. Otherwise, you can copy it from here, changing the paths for the Java source and MSE files:
 
@@ -111,6 +115,8 @@ mseStream
 ```
 
 ## Visualize a Java package in PlantUML
+
+![Visualize model](https://www.plantuml.com/plantuml/svg/NP31JiCm38RlUGfB73PUeRiC8P2O5gaIOkAoWqdTBZInAoUT14-FMtP077_xysVP-r9HwvmJd6APCSLlWYmT9LV6o1CgPlZ0C0ugCtT1aYXKHIxM8gvkiywxJVEOX0aEU4MOL3ufr9rLrrnara0GJ7ksMejQRcGLo3WIF3_ub_VVlR0zaLufCXtk5uD_VO8-fdNoADZTAEdXZtld6YzYLhyqpwuN7TrTYiEb3ah4pV_Zjcr2hc_-Q3iM6730oAvfIIrcGCRqLM8ny88gHX5tgxLKcTpUalti1m00 "Visualize model")
 
 The [PlantUML Pharo Gizmo](https://github.com/fuhrmanator/PlantUMLPharoGizmo) project has a GUI to visualize Moose models. You start the GUI with the following:
 
@@ -156,6 +162,8 @@ You can get a copy of the .png (or .svg) of the diagram by clicking the **Copy C
 ![PlantUML class diagram](https://www.plantuml.com/plantuml/svg/nLKzRmCX3Dtv5LRsHEgACgHgf4uTclm27_ZkKFauOJD4weylbqYLRZq69a3WvsVp7bnOC4i9NZ49H0p42ngwqu8P9MNGMitE4b1Ov061ma2P5Hlq16_AqoWW2RARPW7hCXbnAIfbF3B3OIQqeyiiMbjYDyK5HIX7rjgaCBZeuhHkcVJCflMrJX_NOduE-o5gz0TwtuPmTw7uTRaVvZCbfiRmTujBFRKVvQjs0hDjQ-btmThJLEAJYbk7iQfaBn8Elg4lDx9hJ5j5jp9K8RymMgg0y-_frARpBkd_FT8Z-rRPFHXiND63mDPHFHXiRDI5G9C5Nuyh78-fhm3t4TXU_uMYNR_WFm00){:class="img-responsive"}
 
 ## Perform a Moose analysis using Pharo
+
+![Perform analysis](https://www.plantuml.com/plantuml/svg/PP1DQiD038NtSmf15t6lu6mIIWiD6J2KX6woK6tPcNf6Cffne3rzPJUBGfTwFn_exN91BNEAq93seWcGCNxba5qU0q-ecE03st5GcRbh9Of2KUHi5d5ncnNWDlLJ52Ouu0rXKlcajcnDNUyiixO4hNHqCQr1pVTa4KWu4hpi_Uix90j4gCwaDmfCXyU5uD-UeGznRHu5ktjAUlZ3thhQYnZLB-R5sIUZgyyXpnZ3D_rsNDL4v7BoHmCl2S010xk768Ph6PI8wtyhLCqLLQn0tAtKN6HoExjij1y0 "Perform analysis")
 
 Moose combined with Pharo is very powerful mechanism to do analyses on software.
 In this example, let's assume we want to *find all the Java classes in the Head First Design Patterns project that implement more than one interface*.
