@@ -85,8 +85,8 @@ Click **Generate MSE File** when all the fields are correct. As before, in Windo
 ```smalltalk
 wizard := MooseEasyFamixMaker
 		generateMSETo: 'tmp/HFDP.mse' asFileReference
-		parsing: javaProjectFileRef "'tmp/MooseEasyRepos/bethrobson__Head-First-Design-Patterns' asFileReference"
-		with: verveineJFileRef "'tmp/MooseEasyRepos/moosetechnology__VerveineJ/verveinej.sh' asFileReference".
+		parsing: 'tmp/MooseEasyRepos/bethrobson__Head-First-Design-Patterns' asFileReference
+		with: 'tmp/MooseEasyRepos/moosetechnology__VerveineJ/verveinej.sh' asFileReference.
 wizard generateMSE.
 ```
 
