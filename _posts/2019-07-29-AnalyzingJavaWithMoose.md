@@ -9,8 +9,6 @@ subtitle: >-
 background: '/img/posts/Moose3D.png'
 ---
 
-## Analyzing Java with Moose 8
-
 > Updated 2020-12-27
 
 Moose is a platform in Pharo that can manipulate models of software, to facilitate analyses including software data mining. In this blog post, I will show you a few features of Moose to analyze a Java project.
