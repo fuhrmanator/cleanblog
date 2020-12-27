@@ -13,7 +13,7 @@ background: '/img/posts/MooseMenus.jpg'
 
 Moose is a platform in Pharo that can manipulate models of software, to facilitate analyses including software data mining. In this blog post, I will show you a few features of Moose to analyze a Java project.
 
-> Note: Although Pharo is supported and is stable in Windows 10, there are some gotchas especially with long directory paths and spaces in file names that can crop up in this tutorial. It's possible to use [Pharo in WSL]({% post_url 2019-2-27-Pharo-in-WSL %}) and avoid these pitfalls. If you're going to do a lot of work with Pharo in Windows, I highly recommend checking out WSL!
+> Note: Although Pharo is supported and is stable in Windows 10, there can be some problems, especially with long directory paths and spaces in file names, that can occur in this tutorial. It's possible to use [Pharo in WSL]({% post_url 2019-2-27-Pharo-in-WSL %}) and avoid these pitfalls. If you're going to do a lot of work with Pharo in Windows, I highly recommend checking out WSL!
 
 ## Analysis overview
 
@@ -29,10 +29,11 @@ PlantUML is used to create class diagrams of the software in Moose (this is opti
 
 To make this post, I used Moose 8 in Pharo 8, both of which were in development stage at the time of writing this. Here's a simple way to get it running:
 
-- [Install the Pharo Launcher](http://pharo.org/download).
+- [Install the Pharo Launcher](http://pharo.org/download) and start it.
+- **Important for Windows 10:** click on the **VMs** button in Pharo Launcher and click the **Update** button to make sure you have the latest (most stable) Pharo virtual machines.
 - Create a copy of the image of Moose-8 from the Inria CI:
   **New Image Templates \> Official distributions \> Moose Suite 8.0 (development version) \> Create image**  
-  > Note: Windows 10 users will want to remove the spaces from the name of the image, or it will cause problems in the scripts in this tutorial. You can name the image **Moose8JavaTutorial** for example.
+  > **Warning:** Windows 10 users will want to remove the spaces from the name of the image, or else they may cause problems in the scripts in this tutorial. You can name the image **Moose8JavaTutorial**, for example.
 - Launch the image once it has downloaded.
 
 ## Clone the Java project you want to analyze
@@ -54,7 +55,9 @@ This will create a clone of the Java repo from GitHub in your Pharo working dire
 
 > Note that we are *not* using `Iceberg` to make this clone, but a `git clone` command run in a Bourne shell via [`LibC` in Pharo]({% post_url 2019-03-16-LibC-Pharo-experiments %}). We chose not to use Iceberg because the command runs faster, and there is no memory allocated in the Pharo image for the repository. 
 
-> In Pharo under Windows, you will see a `cmd.exe` window pop-up during the execution of the command. This is a known "gotcha" also discussed in the `LibC` post. 
+> If you want to analyze Java source code, you can use *any* directory -- it doesn't have to be a git repository and you don't have to create it using the above command.
+
+> In Pharo under Windows, you will briefly see a `cmd.exe` window appear during the execution of the command. This is a "gotcha" also discussed in the `LibC` post. 
 
 ## Parse Java to make FAMIX model
 
@@ -63,21 +66,39 @@ This will create a clone of the Java repo from GitHub in your Pharo working dire
 Once we have a local copy (clone) of the source code, we can make the FAMIX model of it using a parser such as [VerveineJ](https://github.com/moosetechnology/VerveineJ), which is supported by Moose-Easy. To install VerveineJ for our purposes, it's simple:
 
 - Make sure a Java Runtime Environment (`java` command) is in the execution path of your system.
-- Make a clone of the VerveineJ parser (which is itself a Java project on GitHub) with the following command in a Moose Playground:  
+- Download and unzip VerveineJ 1.0 with the following commands in a Moose Playground:  
+
 ```smalltalk
-verveineJFileRef := MooseEasyUtility cloneGitHubRepo:
-    'https://github.com/moosetechnology/VerveineJ'.
-```
+UIManager default
+    informUserDuring: [ :bar | 
+        bar label: 'Downloading VerveineJ 1.0.1...'.
+        [ | client |
+        client := ZnClient new.
+        client
+            signalProgress: true;
+            url: 'https://github.com/moosetechnology/VerveineJ/archive/v1.0.1.zip';
+            downloadTo: FileLocator imageDirectory.
+        client isSuccess
+            ifTrue: [ ZipArchive new
+                    readFrom: 'v1.0.1.zip';
+                    extractAllTo: FileLocator imageDirectory.
 
-> This will take some time, because the parser is bigger than the small source code project we cloned first. In Windows, you'll see the `cmd.exe` window stay up until the command is completed - it's normal. 
+                "Since permissions are not preserved with ZipArchive#extractAllTo:"
+                LibC runCommand: 'chmod u+x VerveineJ-1.0.1/verveinej.sh' ]
+            ifFalse: [ self inform: 'Download failed.' ] ]
+            on: HTTPProgress
+            do: [ :progress | 
+                bar label: progress printString.
+                progress isEmpty
+                    ifFalse: [ bar current: progress percentage ].
+                progress resume ] ]
+``` 
 
-As before, the clone will be in your Pharo working directory, with a relative path of `tmp/MooseEasyRepos/moosetechnology__VerveineJ`.
-
-> Note there is no need to compile VerveineJ, since its repository normally has the binary jar files (also a reason why it takes longer to clone).
+If the download works, the VerveineJ importer will be in your Pharo working directory, with a relative path of `VerveineJ-1.0.1`.
 
 Once you have VerveineJ, there are two ways to create the FAMIX model from the Java source code:
 
-1. Start the `FamixMaker` tool in the menu **Moose > Moose Tools > Famix Maker** (or you can execute `MooseEasyFamixMakerPresenter open` in a Moose Playground). You supply the paths to the source code, the VerveineJ parser script `verveinej.sh` and the destination MSE (FAMIX) file. With the relative paths of the examples above, the Java source to parse is at `tmp/MooseEasyRepos/bethrobson__Head-First-Design-Patterns`, the VerveineJ parser is at `tmp/MooseEasyRepos/moosetechnology__VerveineJ/verveinej.sh` and we choose the name `HFDP.mse` to be the MSE file to be stored in `tmp`:  
+1. Start the `FamixMaker` tool in the menu **Moose > Moose Tools > Famix Maker** (or you can execute `MooseEasyFamixMakerPresenter open` in a Moose Playground). You supply the paths to the source code, the VerveineJ parser script `verveinej.sh` and the destination MSE (FAMIX) file. With the relative paths of the examples above, the Java source to parse is at `tmp/MooseEasyRepos/bethrobson__Head-First-Design-Patterns`, the VerveineJ parser is at `VerveineJ-1.0.1/verveinej.sh` and we choose the name `HFDP.mse` to be the MSE file to be stored in `tmp`:  
 [![Famix Maker Dialog]({{site.baseurl}}/img/posts/FamixMakerDialog.png){:class="img-responsive"}]({{site.baseurl}}/img/posts/FamixMakerDialog.png)  
 Click **Generate MSE File** when all the fields are correct. As before, in Windows you will see the `cmd.exe` window and even the execution of a shell script.
 
@@ -86,7 +107,7 @@ Click **Generate MSE File** when all the fields are correct. As before, in Windo
 wizard := MooseEasyFamixMaker
 		generateMSETo: 'tmp/HFDP.mse' asFileReference
 		parsing: 'tmp/MooseEasyRepos/bethrobson__Head-First-Design-Patterns' asFileReference
-		with: 'tmp/MooseEasyRepos/moosetechnology__VerveineJ/verveinej.sh' asFileReference.
+		with: 'VerveineJ-1.0.1/verveinej.sh' asFileReference.
 wizard generateMSE.
 ```
 
@@ -141,7 +162,7 @@ In this example, we will focus on a particular package: `headfirst::designpatter
 each mooseName beginsWith: 'headfirst::designpatterns::combining::decorator'
 ```
 
-Press return to accept the filter, and you should see a new list:
+Press <kbd>Enter</kbd> to accept the filter, and you should see a new list:
 
 [![PlantUMLGizmoMoose Dialog]({{site.baseurl}}/img/posts/PlantUMLMooseClassesFiltered.png){:class="img-responsive"}]({{site.baseurl}}/img/posts/PlantUMLMooseClassesFiltered.png)
 
