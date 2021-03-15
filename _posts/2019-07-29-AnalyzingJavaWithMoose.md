@@ -72,7 +72,6 @@ Once we have a local copy (clone) of the source code, we can make the FAMIX mode
     ifFalse: 'java command NOT FOUND.'
 ```
 - Download and unzip VerveineJ 1.0 with the following commands in a Moose Playground:  
-
 ```smalltalk
 UIManager default
     informUserDuring: [ :bar | 
@@ -88,7 +87,7 @@ UIManager default
                     readFrom: 'v1.0.1.zip';
                     extractAllTo: FileLocator imageDirectory.
 
-                "Since permissions are not preserved with ZipArchive#extractAllTo:"
+                "Permissions may not be set with ZipArchive#extractAllTo:"
                 "Note: This fails (silently) in a Windows VM"
                 LibC runCommand: 'chmod u+x VerveineJ-1.0.1/verveinej.sh' ]
             ifFalse: [ self inform: 'Download failed.' ] ]
