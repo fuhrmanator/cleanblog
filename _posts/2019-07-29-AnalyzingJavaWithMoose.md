@@ -9,7 +9,7 @@ subtitle: >-
 background: '/img/posts/Moose3D.png'
 ---
 
-> Updated 2020-12-27
+> Updated 2021-03-15
 
 Moose is a platform in Pharo that can manipulate models of software, to facilitate analyses including software data mining. In this blog post, I will show you a few features of Moose to analyze a Java project.
 
@@ -65,7 +65,12 @@ This will create a clone of the Java repo from GitHub in your Pharo working dire
 
 Once we have a local copy (clone) of the source code, we can make the FAMIX model of it using a parser such as [VerveineJ](https://github.com/moosetechnology/VerveineJ), which is supported by Moose-Easy. To install VerveineJ for our purposes, it's simple:
 
-- Make sure a Java Runtime Environment (`java` command) is in the execution path of your system.
+- Make sure a Java Runtime Environment (`java` command) is in the execution path of your system. To verify, execute the following in a Moose Playground: 
+```st
+(LibC runCommand: 'java --version') = 0 
+    ifTrue: 'java command found.' 
+    ifFalse: 'java command NOT FOUND.'
+```
 - Download and unzip VerveineJ 1.0 with the following commands in a Moose Playground:  
 
 ```smalltalk
@@ -84,6 +89,7 @@ UIManager default
                     extractAllTo: FileLocator imageDirectory.
 
                 "Since permissions are not preserved with ZipArchive#extractAllTo:"
+                "Note: This fails (silently) in a Windows VM"
                 LibC runCommand: 'chmod u+x VerveineJ-1.0.1/verveinej.sh' ]
             ifFalse: [ self inform: 'Download failed.' ] ]
             on: HTTPProgress
