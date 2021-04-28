@@ -44,5 +44,5 @@ Here's a video of the features in Google Slides:
 
 ### Mathematics notation
 
-![Mathematics image](https://www.plantuml.com/plantuml/svg/JO_H3e8W58RlUGekOSoXrbMPyn6wwDB9S62u8JIa3JFVFSbgtPtpVVl_dLEDdZj_7pGu50FtgkoDPscJTIXW4GhwPiUl34rE9fQH1yloPhV_QMEzXAw_AWykRe9SZnPi2K55Y5qdtGyCgQHCCLfted0ICQRgKm8ApRqCvHbDppgIjfl3Wc4zj3RCq3gum0xz6LBBszXhQmgw9O4q0iPBGBLEyQKN)
+![Mathematics image](https://www.plantuml.com/plantuml/png/JO_H3e8W58RlUGekOSoXrbMPyn6wwDB9S62u8JIa3JFVFSbgtPtpVVl_dLEDdZj_7pGu50FtgkoDPscJTIXW4GhwPiUl34rE9fQH1yloPhV_QMEzXAw_AWykRe9SZnPi2K55Y5qdtGyCgQHCCLfted0ICQRgKm8ApRqCvHbDppgIjfl3Wc4zj3RCq3gum0xz6LBBszXhQmgw9O4q0iPBGBLEyQKN)
 
